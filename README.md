@@ -9,4 +9,3 @@
 1. Email authentication
 2. Mulitple user support
 3. CRUD operations with notes, user profile
-
