@@ -87,7 +87,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 # custom context processors
-                'notespr.context_processors.global_context',
+                'notespr.context_processors.myglobal_context',
             ],
         },
     },

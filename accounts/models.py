@@ -1,7 +1,9 @@
 
+from collections.abc import Iterable
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.db import models
 from django.utils import timezone
+from uuid import uuid1
 
 class MyUserManager(BaseUserManager):
 
@@ -32,6 +34,7 @@ class MyUserManager(BaseUserManager):
 
 
 class MyUser(AbstractBaseUser, PermissionsMixin):
+    user_id=models.UUIDField(unique=True, editable=False, null=False, blank=False)
     email = models.EmailField(max_length=254, unique=True)
     first_name = models.CharField(max_length=254, null=False, blank=False)
     last_name = models.CharField(max_length=254, null=False, blank=False)
@@ -40,6 +43,11 @@ class MyUser(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True)
     last_login = models.DateTimeField(null=True, blank=True)
     date_joined = models.DateTimeField(auto_now_add=True)
+
+    def save(self, *args, **kwargs):
+       if not self.pk:
+          self.user_id=uuid1()
+       return super().save(*args, **kwargs)
     
 
     USERNAME_FIELD = 'email'
