@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'title' %}Login{% endblock 'title' %}
+{% block 'css' %}
+<style>
+    .form-control{
+        border-color: gray;
+    }
+    .form-control:focus{
+        box-shadow: none;
+        outline: none;
+        border-color: #000;
+    }
+</style>
+{% endblock 'css' %}
+
+{% block 'content' %}
+<div class="container-fluid text-center border border-dark" style="max-width: 40rem;">
+    <div class="row">
+      <div class="col">
+        <form class="d-flex flex-column text-start my-5 shadow border border-dark p-3 mx-auto" id="signupForm" method="post" action="{% url 'signup' %}" style="max-width: 25rem;">
+            {% csrf_token %}
+            <h1 class="mb-3">Signup</h1>
+            <div class="row mb-3">
+                <div class="col-12 col-sm-6">
+                  <label for="InputFirstName" class="form-label">First Name</label>
+                  <input type="text" name="first_name" class="form-control" id="InputFirstName" autocomplete="name" required>
+              </div>
+              <div class="col-12 col-sm-6">
+                  <label for="InputLastName" class="form-label">Last Name</label>
+                  <input type="text" name="last_name" class="form-control" id="InputLastName" autocomplete="name" required>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="InputEmail1" class="form-label">Email address</label>
+              <input type="email" name="email" class="form-control" autocomplete="email" id="InputEmail1" required>
+            </div>
+            <div class="mb-3">
+              <label for="InputPassword1" class="form-label">Password</label>
+              <input type="password" name="password" class="form-control" id="InputPassword1" autocomplete="current-password" required>
+            </div>
+            <button type="submit" class="btn btn-primary mb-3">Signup</button>
+            <p>Already a user? <a href="{% url 'login' %}" class="">Login</a> </p>
+          </form>
+      </div>
+    </div>
+  </div>
+{% endblock 'content' %}
+
+{% block 'js' %}
+{% endblock 'js' %}

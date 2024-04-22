@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'title' %}Login{% endblock 'title' %}
+{% block 'css' %}
+<style>
+    .form-control{
+        border-color: gray;
+    }
+    .form-control:focus{
+        box-shadow: none;
+        outline: none;
+        border-color: #000;
+    }
+    .success-message{
+        color: green;
+    }
+    .error-message{
+        color: red;
+    }
+</style>
+{% endblock 'css' %}
+
+{% block 'content' %}
+<div class="container-fluid text-center border border-dark" style="max-width: 40rem;">
+    <div class="row">
+      <div class="col">
+        <form class="d-flex flex-column text-start my-5 shadow border border-dark p-3 mx-auto" id="loginForm" method="post" action="{% url 'login' %}" style="max-width: 25rem;">
+            {% csrf_token %}
+            {% if messages %}
+            <span class="messages">
+                {% for message in messages %}
+                <span {% if message.tags %} class="{{ message.tags }}-message fs-5 fw-bold" {% endif %}>{{ message }}</span>
+                {% endfor %}
+            </span>
+            {% endif %}
+
+            <h1 class="mb-3">Login</h1>
+            <div class="mb-3">
+              <label for="InputEmail1" class="form-label">Email address</label>
+              <input type="email" name="email" class="form-control" autocomplete="email" id="InputEmail1" required>
+            </div>
+            <div class="mb-3">
+              <label for="InputPassword1" class="form-label">Password</label>
+              <input type="password" name="password" class="form-control" id="InputPassword1" autocomplete="current-password" required>
+            </div>
+            <button type="submit" class="btn btn-primary mb-3">Login</button>
+            <p>New user? <a href="{% url 'signup' %}" class="">Signup</a> </p>
+          </form>
+      </div>
+    </div>
+  </div>
+{% endblock 'content' %}
+
+{% block 'js' %}
+{% endblock 'js' %}

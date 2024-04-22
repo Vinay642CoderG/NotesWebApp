@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-fj*qu885af$tcaz+yjq6g&wc!qlkcdn!ug+r@7vyybxk=+ma2+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [  ]
 
 
 # Application definition
@@ -77,7 +77,8 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            BASE_DIR / 'templates'
+            BASE_DIR,
+            BASE_DIR / 'templates',
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -155,3 +156,4 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'accounts.MyUser'
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
